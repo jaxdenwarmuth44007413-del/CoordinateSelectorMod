@@ -1,0 +1,17 @@
+﻿{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AEA",
+    "EDE",
+    "AEA"
+  ],
+  "key": {
+    "A": { "item": "minecraft:amethyst_shard" },
+    "E": { "item": "minecraft:emerald" },
+    "D": { "item": "minecraft:diamond" }
+  },
+  "result": {
+    "item": "coordinate_selector:miku_locator",
+    "count": 1
+  }
+}

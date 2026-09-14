@@ -1,0 +1,69 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+}
+
+group = 'com.miku'
+version = '1.0.0'
+
+base {
+    archivesName = 'coordinate_selector'
+}
+
+sourceCompatibility = targetCompatibility = '17'
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+    copyIdeResources = true
+}
+
+repositories {
+    maven { url = 'https://bmclapi2.bangbang93.com/maven/' }
+    maven { url = 'https://maven.minecraftforge.net/' }
+    mavenCentral()
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.2.0'
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [
+            minecraft_version: '1.20.1',
+            minecraft_version_range: '[1.20.1,1.21)',
+            forge_version: '47.2.0',
+            forge_version_range: '[47,)',
+            loader_version_range: '[47,)',
+            mod_id: 'coordinate_selector',
+            mod_name: 'Coordinate Selector',
+            mod_license: 'MIT',
+            mod_version: '1.0.0',
+            mod_authors: 'Miku Fans',
+            mod_description: 'Coordinate Selector for Wormhole'
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.named('jar', Jar).configure {
+    manifest {
+        attributes([
+                'Specification-Title'     : 'coordinate_selector',
+                'Specification-Vendor'    : 'miku',
+                'Specification-Version'   : '1',
+                'Implementation-Title'    : project.name,
+                'Implementation-Version'  : project.jar.archiveVersion,
+                'Implementation-Vendor'   : 'miku',
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+    finalizedBy 'reobfJar'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}

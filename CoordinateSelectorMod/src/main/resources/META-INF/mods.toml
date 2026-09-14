@@ -1,0 +1,24 @@
+﻿modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+
+[[mods]]
+modId="coordinate_selector"
+version="1.0.0"
+displayName="Coordinate Selector"
+authors="Miku Fans"
+description="Hatsune Miku themed coordinate selector for Wormhole."
+
+[[dependencies.coordinate_selector]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47.1.0,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.coordinate_selector]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1,1.21)"
+    ordering="NONE"
+    side="BOTH"
